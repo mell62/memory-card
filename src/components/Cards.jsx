@@ -4,10 +4,13 @@ import "../styles/modern-normalize.css";
 export default function Cards() {
   let selectedPokemons = [];
 
-  const selectPokemons = () => {
-    let iterator = 0;
+  const selectPokemons = (iterator = 0) => {
     while (iterator < 6) {
       const randomNum = Math.floor(Math.random() * 150) + 1;
+      if (selectedPokemons.includes(randomNum)) {
+        selectPokemons(iterator);
+        return;
+      }
       selectedPokemons.push(randomNum);
       iterator += 1;
     }
